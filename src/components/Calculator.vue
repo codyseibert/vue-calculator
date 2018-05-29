@@ -12,7 +12,7 @@
     <div @click="append('4')" class="btn">4</div>
     <div @click="append('5')" class="btn">5</div>
     <div @click="append('6')" class="btn">6</div>
-    <div @click="minus" class="btn operator">-</div>
+    <div @click="subtract" class="btn operator">-</div>
     <div @click="append('1')" class="btn">1</div>
     <div @click="append('2')" class="btn">2</div>
     <div @click="append('3')" class="btn">3</div>
@@ -28,32 +28,35 @@ export default {
   data() {
     return {
       previous: null,
-      current: '',
+      current: "",
       operator: null,
-      operatorClicked: false,
-    }
+      operatorClicked: false
+    };
   },
   methods: {
     clear() {
-      this.current = '';
+      this.current = "";
+      this.previous = null;
     },
     sign() {
-      this.current = this.current.charAt(0) === '-' ? 
-        this.current.slice(1) : `-${this.current}`;
+      this.current =
+        this.current.charAt(0) === "-"
+          ? this.current.slice(1)
+          : `-${this.current}`;
     },
     percent() {
       this.current = `${parseFloat(this.current) / 100}`;
     },
     append(number) {
       if (this.operatorClicked) {
-        this.current = '';
+        this.current = "";
         this.operatorClicked = false;
       }
       this.current = `${this.current}${number}`;
     },
     dot() {
-      if (this.current.indexOf('.') === -1) {
-        this.append('.');
+      if (this.current.indexOf(".") === -1) {
+        this.append(".");
       }
     },
     setPrevious() {
@@ -63,44 +66,66 @@ export default {
     divide() {
       this.operator = (a, b) => a / b;
       this.setPrevious();
+      console.log(this.operator);
     },
     times() {
       this.operator = (a, b) => a * b;
       this.setPrevious();
+      console.log(this.operator);
     },
-    minus() {
-      this.operator = (a, b) => a - b;
+    subtract() {
+      this.operator = (a, b) => b - a;
       this.setPrevious();
+      console.log(this.operator);
     },
     add() {
       this.operator = (a, b) => a + b;
       this.setPrevious();
+      console.log(this.operator);
     },
     equal() {
-      this.current = `${this.operator(
-        parseFloat(this.current), 
-        parseFloat(this.previous)
-      )}`;
-      this.previous = null;
+      this.current = `${
+        this.operator(
+          parseFloat(this.current),
+          parseFloat(this.previous)
+        ).toString().length >= 5
+          ? this.operator(
+              parseFloat(this.current),
+              parseFloat(this.previous)
+            ).toExponential(5)
+          : this.operator(parseFloat(this.current), parseFloat(this.previous))
+      }`;
+      // console.log(
+      //   this.operator(
+      //     parseFloat(this.current),
+      //     parseFloat(this.previous)
+      //   ).toString().length
+      // );
+      // this.previous = null;
     }
   }
-}
+};
 </script>
 
 <style scoped>
 .calculator {
   margin: 0 auto;
-  width: 400px;
+  width: 300px;
   font-size: 40px;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-auto-rows: minmax(50px, auto);
 }
 
+.calculator > div:active {
+  filter: brightness(0.75);
+}
+
 .display {
   grid-column: 1 / 5;
   background-color: #333;
   color: white;
+  padding: 1vmin;
 }
 
 .zero {
@@ -108,8 +133,9 @@ export default {
 }
 
 .btn {
-  background-color: #F2F2F2;
+  background-color: #f2f2f2;
   border: 1px solid #999;
+  padding: 1vmin;
 }
 
 .operator {
