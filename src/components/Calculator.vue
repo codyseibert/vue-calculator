@@ -78,8 +78,8 @@ export default {
     },
     equal() {
       this.current = `${this.operator(
-        parseFloat(this.current), 
-        parseFloat(this.previous)
+        parseFloat(this.previous), 
+        parseFloat(this.current)
       )}`;
       this.previous = null;
     }
