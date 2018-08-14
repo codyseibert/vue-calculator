@@ -4,8 +4,7 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve --open",
-    "build": "vue-cli-service build",
-    "test": "mocha -c"
+    "build": "vue-cli-service build"
   },
   "dependencies": {
     "vue": "^2.5.16"
@@ -13,17 +12,7 @@
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.0.0-beta.11",
     "@vue/cli-service": "^3.0.0-beta.11",
-    "babel-core": "^6.26.3",
-    "babel-polyfill": "^6.26.0",
-    "babel-preset-es2015": "^6.24.1",
-    "chai": "^4.1.2",
-    "mocha": "^5.2.0",
     "vue-template-compiler": "^2.5.16"
-  },
-  "babel": {
-    "presets": [
-      "es2015"
-    ]
   },
   "browserslist": [
     "> 1%",
