@@ -54,13 +54,18 @@ export default {
       this.operatorClicked = false;
     },
     sign() {
-      this.currentString = calc.sign().toString(10);
+      if (this.currentString) {
+        calc.setCurrent(parseFloat(this.currentString || 0));
+      }
+      this.calcCurrent = calc.sign().toString(10);
+      this.currentString = '';
     },
     percent() {
       if (this.currentString) {
         calc.setCurrent(parseFloat(this.currentString || 0));
       }
-      this.currentString = calc.percent().toString(10);
+      this.calcCurrent = calc.percent().toString(10);
+      this.currentString = '';
     },
     append(number) {
       this.currentString = `${this.currentString}${number}`.replace(/^0/, '');
