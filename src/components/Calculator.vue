@@ -130,6 +130,7 @@ export default {
 .btn {
   background-color: #F2F2F2;
   border: 1px solid #999;
+  user-select: none;
 }
 
 .operator {
