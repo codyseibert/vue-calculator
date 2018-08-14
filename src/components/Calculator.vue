@@ -48,12 +48,13 @@ export default {
   methods: {
     clear() {
       this.calcCurrent = calc.clear();
-      this.currentString = 0;
+      this.currentString = '';
       this.operator = null;
       this.rhsOperand = null;
       this.operatorClicked = false;
     },
     sign() {
+      // set current state of calculator to the currentString if one has been entered
       if (this.currentString) {
         calc.setCurrent(parseFloat(this.currentString || 0));
       }
@@ -61,6 +62,7 @@ export default {
       this.currentString = '';
     },
     percent() {
+      // set current state of calculator to the currentString if one has been entered
       if (this.currentString) {
         calc.setCurrent(parseFloat(this.currentString || 0));
       }
