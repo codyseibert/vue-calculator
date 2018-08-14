@@ -1,3 +1,2 @@
 --recursive
---compilers js:babel-core/register
---require babel-polyfill
+--require @babel/register +(test)/**/*.spec.js
