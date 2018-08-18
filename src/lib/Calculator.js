@@ -1,24 +1,22 @@
 'use strict';
 
-export default Calculator;
-
-function Calculator () {
-    // state
-    this.current = 0;
-    this.rhsOperand = null;
-    this.operator = null;
-
-    // methods
+export default class Calculator {
+    constructor () {
+        // state
+        this.current = 0;
+        this.rhsOperand = null;
+        this.operator = null;
+    }
     // state handling
-    this.clear = function () {
+    clear () {
         this.operator = null;
         this.rhsOperand = null;
         return this.current = 0;
     };
-    this.resetCurrent = function () {
+    resetCurrent () {
         return this.setCurrent(0);
     };
-    this.setCurrent = function (origN) {
+    setCurrent (origN) {
         let n = parseFloat(origN);
         if (isNaN(n)) {
             throw new Error(`setCurrent received invalid float: ${origN}`);
@@ -26,15 +24,15 @@ function Calculator () {
         return this.current = n;
     };
     // mathematical operations
-    this.add = function (n) {
+    add (n) {
         this.operator = 'add';
         this.rhsOperand = n;
     };
-    this.divide = function (n) {
+    divide (n) {
         this.operator = 'divide';
         this.rhsOperand = n;
     };
-    this.exec = function () {
+    exec () {
         switch (this.operator) {
             case 'add':
                 this.current = this.current + this.rhsOperand;
@@ -53,14 +51,14 @@ function Calculator () {
         }
         return this.current;
     };
-    this.multiply = function (n) {
+    multiply (n) {
         this.operator = 'multiply';
         this.rhsOperand = n;
     };
-    this.percent = function () {
+    percent () {
         return this.current = this.current / 100;
     };
-    this.sign = function () {
+    sign () {
         let result = -this.current;
         // prevent negative 0 from being returned
         if (Math.abs(result) === 0) {
@@ -68,9 +66,8 @@ function Calculator () {
         }
         return this.current = result;
     };
-    this.subtract = function (n) {
+    subtract (n) {
         this.operator = 'subtract';
         this.rhsOperand = n;
     };
-    return this;
-}
+};
