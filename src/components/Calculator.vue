@@ -129,6 +129,9 @@ export default {
   cursor: pointer;
   padding: 1rem;
 }
+.btn:active {
+   transform: scale(0.95);
+}
 
 .operator {
   background-color: orange;
